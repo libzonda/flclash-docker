@@ -5,7 +5,7 @@ RUN apt-get update && \
     apt-get install -y libayatana-appindicator3-dev wget curl && \
     rm -rf /var/lib/apt/lists/*
 
-# 下载并安装 FlClash 最新 arm64 .deb 包
+# 下载并安装 FlClash 最新 linux-arm64.deb 包
 RUN set -ex; \
     url=$(curl -s https://api.github.com/repos/chen08209/FlClash/releases/latest \
       | grep browser_download_url \
@@ -23,4 +23,4 @@ RUN echo '#!/bin/sh\nexec FlClash' > /startapp.sh && chmod +x /startapp.sh
 
 ENV APP_RUN=/startapp.sh
 
-EXPOSE 5800 5900
+EXPOSE 5800 5900 7890/tcp 1053/udp
