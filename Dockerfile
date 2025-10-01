@@ -9,7 +9,7 @@ RUN apt-get update && \
 RUN set -ex; \
     url=$(curl -s https://api.github.com/repos/chen08209/FlClash/releases/latest \
       | grep browser_download_url \
-      | grep 'linux-arm64\.deb"' \
+      | grep 'linux-amd64\.deb"' \
       | cut -d '"' -f 4); \
     echo "Downloading $url"; \
     wget -O /tmp/flclash.deb "$url"; \
