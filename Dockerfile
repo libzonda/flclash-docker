@@ -1,11 +1,17 @@
 FROM jlesage/baseimage-gui:ubuntu-24.04-v4
 
-# 安装依赖
+# INSTALL DEPENDENCES
 RUN apt-get update && \
-    apt-get install -y libayatana-appindicator3-dev libkeybinder-3.0-dev wget curl && \
+    apt-get install -y locales dbus libayatana-appindicator3-dev libkeybinder-3.0-dev wget curl && \
+    locale-gen zh_CN.UTF-8 en_US.UTF-8 && \
+    update-locale LANG=zh_CN.UTF-8 && \
+    mkdir -p /var/run/dbus && \
     rm -rf /var/lib/apt/lists/*
 
-# 下载并安装 FlClash 最新 linux-arm64.deb 包
+ENV LANG=zh_CN.UTF-8
+ENV LC_ALL=zh_CN.UTF-8
+
+# Download latest FlClash pacakge (linux-amd64.deb)
 RUN set -ex; \
     url=$(curl -s https://api.github.com/repos/chen08209/FlClash/releases/latest \
       | grep browser_download_url \
@@ -18,9 +24,12 @@ RUN set -ex; \
     rm /tmp/flclash.deb; \
     rm -rf /var/lib/apt/lists/*
 
-# 创建启动脚本，假设flclash的命令为 FlClash（如有不同请调整）
-RUN echo '#!/bin/sh\nexec FlClash' > /startapp.sh && chmod +x /startapp.sh
+# Create start-up script
+RUN echo '#!/bin/sh\n\
+dbus-daemon --system &\n\
+exec FlClash\n' > /startapp.sh && chmod +x /startapp.sh
 
 ENV APP_RUN=/startapp.sh
 
+# Expose GUI、Clash proxies and DNS ports
 EXPOSE 5800 5900 7890/tcp 1053/udp
