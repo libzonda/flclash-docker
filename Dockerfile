@@ -2,14 +2,23 @@ FROM jlesage/baseimage-gui:ubuntu-24.04-v4
 
 # INSTALL DEPENDENCES
 RUN apt-get update && \
-    apt-get install -y locales dbus libayatana-appindicator3-dev libkeybinder-3.0-dev wget curl && \
+    apt-get install -y \
+      locales \
+      dbus \
+      libayatana-appindicator3-dev \
+      libkeybinder-3.0-dev \
+      wget \
+      curl \
+      fonts-noto-cjk \
+      fonts-wqy-zenhei \
+      fonts-wqy-microhei && \
     locale-gen zh_CN.UTF-8 en_US.UTF-8 && \
     update-locale LANG=zh_CN.UTF-8 && \
     mkdir -p /var/run/dbus && \
     rm -rf /var/lib/apt/lists/*
 
 ENV LANG=zh_CN.UTF-8
-ENV LC_ALL=zh_CN.UTF-8
+ENV LC_ALL=zh_CN.UTF
 
 # Download latest FlClash pacakge (linux-amd64.deb)
 RUN set -ex; \
