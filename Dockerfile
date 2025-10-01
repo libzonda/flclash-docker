@@ -2,7 +2,7 @@ FROM jlesage/baseimage-gui:ubuntu-24.04-v4
 
 # 安装依赖
 RUN apt-get update && \
-    apt-get install -y libayatana-appindicator3-dev wget curl && \
+    apt-get install -y libayatana-appindicator3-dev libkeybinder-3.0-dev wget curl && \
     rm -rf /var/lib/apt/lists/*
 
 # 下载并安装 FlClash 最新 linux-arm64.deb 包
