@@ -2,6 +2,11 @@
 
 This project provides a Docker image for [FlClash](https://github.com/chen08209/FlClash).
 
+
+## Screenshots
+![screenshot](screenshot.jpeg)
+
+
 ## Pulling the Image
 
 You can pull the image from either Docker Hub or GitHub Container Registry:
@@ -41,6 +46,9 @@ services:
       - TZ=Asia/Shanghai
     restart: unless-stopped
 ```
+
+## Visit
+[http://localhost:5800](http://localhost:5800)
 
 ## Acknowledgements
 
