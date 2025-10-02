@@ -18,7 +18,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 ENV LANG=zh_CN.UTF-8
-ENV LC_ALL=zh_CN.UTF
+ENV LC_ALL=zh_CN.UTF-8
 
 # Download latest FlClash pacakge (linux-amd64.deb)
 RUN set -ex; \
