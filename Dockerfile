@@ -14,7 +14,6 @@ RUN apt-get update && \
       fonts-wqy-microhei && \
     locale-gen zh_CN.UTF-8 en_US.UTF-8 && \
     update-locale LANG=zh_CN.UTF-8 && \
-    mkdir -p /var/run/dbus && \
     rm -rf /var/lib/apt/lists/*
 
 ENV LANG=zh_CN.UTF-8
@@ -35,7 +34,6 @@ RUN set -ex; \
 
 # Create start-up script
 RUN echo '#!/bin/sh\n\
-dbus-daemon --system &\n\
 exec FlClash\n' > /startapp.sh && chmod +x /startapp.sh
 
 ENV APP_RUN=/startapp.sh
