@@ -36,6 +36,7 @@ RUN set -ex; \
 RUN echo '#!/bin/sh\n\
 exec FlClash\n' > /startapp.sh && chmod +x /startapp.sh
 
+ENV APP_NAME=flclash
 ENV APP_RUN=/startapp.sh
 
 # Expose GUI、Clash proxies and DNS ports
