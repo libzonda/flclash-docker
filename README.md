@@ -36,6 +36,7 @@ services:
     volumes:
       - /run/dbus/system_bus_socket:/run/dbus/system_bus_socket
       - ./flclash:/config/xdg/data/com.follow.clash
+      - /you-flclash-data:/config/xdg/data/com.follow.clash
     user: 0:0
     privileged: true
     cap_add:
